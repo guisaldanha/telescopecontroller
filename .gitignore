@@ -1,0 +1,12 @@
+__pycache__/
+/.tests/
+/.dev_files/
+/.dev_tools/
+/.vscode/
+/.venv/
+/venv/
+/dist/
+/build/
+*.log
+*.ini
+*.spec
