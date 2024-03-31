@@ -422,6 +422,7 @@ class Controller:
             log.debug('Fechou corretamente')
             sys.exit()
         except Exception as e:
+            log.error(f"Erro ao fechar o programa: {e}")
             self.root.destroy()
             sys.exit()
 
@@ -435,11 +436,17 @@ class Controller:
 
             # Verifica se um dispositivo foi selecionado
             if device_id:
+                # verifica se já existe o self.Telescope, se sim, desconecta
+                if hasattr(self, 'Telescope'):
+                    log.debug(f'Montagem conectado: {self.Telescope} Desconectando...')
+                    self.Telescope.Connected = False
+
                 self.device_id = device_id
                 # Cria uma instância do dispositivo selecionado
                 self.Telescope = win32com.client.Dispatch(device_id)
                 self.Telescope.Connected = True
                 self.unpark()
+                log.debug(f'Conexão realizada com sucesso com driver {device_id}')
                 # verifica se já existe o self.comboSpeed, se sim, atualiza os valores
                 if hasattr(self, 'comboSpeed'):
                     self.comboSpeed.config(values=self.get_possible_rates())
@@ -450,6 +457,13 @@ class Controller:
                     self.frmConfig.entryTelescope.config(state="readonly")
                 except Exception as e:
                     pass
+
+                # verifica se a classe frmConfig já foi criada e atualiza o campo entry self.telescope_entry
+                if hasattr(self, 'frmConfig'):
+                    self.frmConfig.telescope_entry.config(state="normal")
+                    self.frmConfig.telescope_entry.delete(0, tk.END)
+                    self.frmConfig.telescope_entry.insert(0, self.device_id)
+                    self.frmConfig.telescope_entry.config(state="readonly")
 
                 return self.Telescope
             else:
