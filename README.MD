@@ -25,7 +25,7 @@ Este é um controlador para telescópios que utiliza a biblioteca ASCOM para com
 
 ## Instalação através do instalador próprio
 
-1. Baixe o instalador do programa no link [TelescopeController-Setup.exe](https://github.com/guisaldanha/telescopecontroller/instalador/TelescopeController-Setup.exe).
+1. Baixe o instalador do programa no link [TelescopeController-Setup.exe](https://github.com/guisaldanha/telescopecontroller/blob/main/instalador/TelescopeController-Setup.exe).
 2. Execute o instalador e siga as instruções.
 3. Após a instalação, execute o programa através do atalho criado no menu Iniciar.
 
