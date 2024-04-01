@@ -37,7 +37,7 @@ class Controller:
 
         self.log = log
 
-        self.version = '1.0.0'
+        self.version = '1.0.1'
 
         # Configurações iniciais - Arquivo config.ini que tem as configurações de ip, porta e cache
         self.cache = self.get_config('COMMUNICATION', 'cache') or 0.5
